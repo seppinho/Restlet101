@@ -22,8 +22,10 @@ import rest.Index;
 		// Add a new HTTP server listening on port 8080
 		Server server = component.getServers().add(Protocol.HTTP, 8080);
 
-		// Add HTTPS if file exists
+		// Add your HTTPS specifications
 		String file = "location-to-your-file";
+		String keystorePwd = "your-password";
+		String keyPwd = "your-password";
 		File keystoreFile = new File(file);
 		
 		if (keystoreFile.exists()) {
@@ -50,8 +52,8 @@ import rest.Index;
 									+ " TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA");
 
 			parameters.add("keyStorePath", keystoreFile.getAbsolutePath());
-			parameters.add("keyStorePassword", "password");
-			parameters.add("keyPassword", "password");
+			parameters.add("keyStorePassword", keystorePwd);
+			parameters.add("keyPassword", keyPwd);
 			parameters.add("keyStoreType", "JKS");
 			parameters.add("allowRenegotiate", "false");
 		}
